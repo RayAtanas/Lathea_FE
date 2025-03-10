@@ -1,0 +1,56 @@
+.card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 400px;       /* Bigger width */
+    height: 300px;      /* Bigger height */
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Initial overlay layer */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease-in-out;
+    z-index: 1;
+  }
+  
+  /* Header always visible */
+  .card-header {
+    position: relative;
+    z-index: 2;
+    padding: 1rem;
+  }
+  
+  /* Extra details hidden by default */
+  .card-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 3;
+  }
+  
+  /* Hover effects: Darken overlay and reveal details */
+  .card:hover .overlay {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  }
+  
+  .card:hover .card-details {
+    opacity: 1;
+    visibility: visible;
+  }
+  
