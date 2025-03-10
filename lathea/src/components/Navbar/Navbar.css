@@ -1,0 +1,108 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background-color: rgba(19, 41, 61, 0.8); /* Dark blue with transparency */
+    color: white;
+    padding: 15px 0;
+  }
+  
+  .navbar.scrolled {
+    background-color: #13293d; /* Solid dark blue when scrolled */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    justify-content: space-between;
+  }
+  
+  .navbar-logo img {
+    height: 40px;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar.scrolled .navbar-logo img {
+    height: 35px; /* Slightly smaller logo when scrolled */
+  }
+  
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+  }
+  
+  .nav-item {
+    position: relative;
+  }
+  
+  .nav-item a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px 5px;
+    transition: all 0.2s ease;
+    display: block;
+  }
+  
+  .nav-item a:hover {
+    opacity: 0.8;
+  }
+  
+  /* Dropdown styling */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    border-radius: 4px;
+    list-style: none;
+    z-index: 10;
+    margin-top: 10px;
+  }
+  
+  .dropdown-menu li {
+    padding: 0;
+  }
+  
+  .dropdown-menu li a {
+    color: #333;
+    font-weight: normal;
+    padding: 10px 20px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+  }
+  
+  .dropdown-menu li a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #1e50a0;
+  }
+  
+  /* Show dropdown on hover */
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /* Add dropdown indicator */
+  .nav-item.dropdown > a::after {
+    content: '▼';
+    font-size: 10px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+  }
