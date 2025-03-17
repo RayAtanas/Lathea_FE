@@ -1,56 +1,123 @@
 .card {
-    position: relative;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 400px;       /* Bigger width */
-    height: 300px;      /* Bigger height */
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Initial overlay layer */
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    transition: background 0.3s ease-in-out;
-    z-index: 1;
-  }
-  
-  /* Header always visible */
-  .card-header {
-    position: relative;
-    z-index: 2;
-    padding: 1rem;
-  }
-  
-  /* Extra details hidden by default */
-  .card-details {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    z-index: 3;
-  }
-  
-  /* Hover effects: Darken overlay and reveal details */
-  .card:hover .overlay {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-  }
-  
-  .card:hover .card-details {
-    opacity: 1;
-    visibility: visible;
-  }
-  
+  position: relative;
+  border-radius: 8px;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  background-color: #1e1e1e;
+}
+
+/* Initial overlay layer */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease-in-out;
+  z-index: 1;
+}
+
+/* Header always visible */
+.card-header {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.card-header h3 {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.status-badge.onplan,
+.status-badge.offplan {
+  background-color: rgba(25, 118, 210, 0.3);
+  color: #64b5f6;
+}
+
+.status-badge.inprogress,
+.status-badge.comingsoon {
+  background-color: rgba(255, 152, 0, 0.3);
+  color: #ffb74d;
+}
+
+.status-badge.completed,
+.status-badge.finished {
+  background-color: rgba(76, 175, 80, 0.3);
+  color: #81c784;
+}
+
+.status-badge.unknown {
+  background-color: rgba(158, 158, 158, 0.3);
+  color: #e0e0e0;
+}
+
+/* Extra details hidden by default */
+.card-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 3;
+  color: white;
+}
+
+.project-name {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(103, 58, 183, 0.3);
+  color: #d1c4e9;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.description {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: #e0e0e0;
+  line-height: 1.4;
+}
+
+/* Hover effects: Darken overlay and reveal details */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover .overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 70%);
+}
+
+.card:hover .card-details {
+  opacity: 1;
+  visibility: visible;
+}
