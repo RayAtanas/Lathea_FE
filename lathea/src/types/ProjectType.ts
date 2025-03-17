@@ -3,8 +3,20 @@ export interface Project {
     name: string;
     location?:string;
     latitude?:number;
+    longitude?:number;
     status:string;
     description?: string;
     image?:string[];
-    specs?:Blob[];
+    apartments?:Apartment[];
+    specs?:string[];
+  }
+
+  export interface Apartment {
+    id: number;
+    name: string;
+    status:string;
+    description?: string;
+    image?:string[];
+    flatPlan?:string[];
+    projectId?:number;
   }
