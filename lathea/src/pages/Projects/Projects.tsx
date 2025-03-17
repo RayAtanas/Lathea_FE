@@ -3,11 +3,14 @@ import { Project as ProjectType } from '../../types/ProjectType';
 import { getAllProjects } from '../../services/ProjectService';
 import Card from '../../components/Card/Card';
 import Navbar from '../../components/Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
+import './Projects.css';
 
 const Projects: React.FC = () => {
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -25,33 +28,49 @@ const Projects: React.FC = () => {
     fetchProjects();
   }, []);
 
+  const handleCardClick = (id: number) => {
+    // Navigate to the project detail page passing the project id in the URL
+    navigate(`/project/${id}`);
+  };
+
   if (loading) {
-    return <div>Loading projects...</div>;
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading projects...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div className="error-container">
+        <div className="error-icon">⚠️</div>
+        <p>{error}</p>
+      </div>
+    );
   }
 
   return (
-    <div
-      className="projects-page"
-      style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}
-    >
+    <div className="projects-page">
       <Navbar />
-      {projects.map((project) => (
-        <Card
-          key={project.id}
-          id={project.id}
-          name={project.name}
-          status={project.status}
-          image={project.image}
-        >
-          {project.location && <p><strong>Location:</strong> {project.location}</p>}
-          {project.latitude !== undefined && <p><strong>Latitude:</strong> {project.latitude}</p>}
-          {project.description && <p><strong>Description:</strong> {project.description}</p>}
-        </Card>
-      ))}
+      <div className="page-header">
+        <h1>Projects</h1>
+      </div>
+      <div className="projects-grid">
+        {projects.map((project) => (
+          <Card
+            key={project.id}
+            id={project.id}
+            name={project.name}
+            status={project.status}
+            image={project.image}
+            location={project.location}
+            description={project.description}
+            onClick={() => handleCardClick(project.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
