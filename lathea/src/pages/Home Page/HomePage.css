@@ -1,90 +1,677 @@
-/* Minimal styling that won't break layout */
+/* Updated HomePage.css for Lathea Group with blue backgrounds and white text */
 
-/* Section styling */
+/* Color palette variables */
+:root {
+  --primary-dark: #13293D;    /* Dark navy blue */
+  --primary-light: #2A93D5;   /* Accent blue */
+  --light-blue: #1a4365;      /* Lighter blue for contrast */
+  --dark-blue: #0c1e2d;       /* Darker blue for sections */
+  --light-text: #ffffff;      /* Light text */
+  --card-bg: #13293D;         /* Card background */
+  --card-bg-hover: #1a4365;   /* Card hover background */
+  --border-color: #2A93D5;    /* Border color */
+  --hover-color: #3da5e7;     /* Hover state for accent blue */
+}
+
+/* Global styles and typography */
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--light-text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--primary-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: var(--light-text);
+  margin-top: 0;
+}
+
+a {
+  color: var(--primary-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--hover-color);
+}
+
+/* Main content container */
+.main-content {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--primary-dark);
+}
+
+/* Enhanced section styling with improved contrast */
 .section {
-    padding: 60px 0;
-    width: 100%;
-  }
-  
-  .section:nth-child(odd) {
-    background-color: #f9f9f9;
-  }
-  
-  .section-content {
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 0 20px;
+  padding: 70px 0;
+  width: 100%;
+  position: relative;
+}
+
+.section:nth-child(odd) {
+  background-color: var(--primary-dark);
+}
+
+.section:nth-child(even) {
+  background-color: var(--light-blue);
+}
+
+/* Add subtle section dividers */
+.section:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  max-width: 1000px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(42, 147, 213, 0.3), transparent);
+}
+
+.section-content {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Improved section titles with better contrast */
+.section-title {
+  font-size: 2.5rem;
+  color: var(--light-text);
+  margin-bottom: 35px;
+  text-align: center;
+  position: relative;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding-bottom: 15px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--primary-light);
+  margin: 15px auto 0;
+}
+
+/* Improved typography with better readability */
+.section-content p {
+  color: var(--light-text);
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  line-height: 1.8;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Fade-in animation for sections */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CTA Buttons with improved contrast */
+.cta-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cta-button.primary {
+  background-color: var(--primary-light);
+  color: var(--light-text);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button.primary:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button.secondary {
+  background-color: transparent;
+  color: var(--light-text);
+  border: 2px solid var(--primary-light);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button.secondary:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* About section - Create visual interest with subtle pattern */
+#about {
+  background-color: var(--primary-dark);
+  position: relative;
+}
+
+#about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+}
+
+/* Services section - Enhance with top/bottom borders for definition */
+#services {
+  background-color: var(--light-blue);
+  border-top: 1px solid rgba(42, 147, 213, 0.2);
+  border-bottom: 1px solid rgba(42, 147, 213, 0.2);
+}
+
+/* Enhanced Services Grid with improved visuals */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.service-card {
+  background-color: var(--card-bg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 35px 30px;
+  border-radius: 10px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+  border-top: 4px solid var(--primary-light);
+  border-left: 1px solid rgba(42, 147, 213, 0.1);
+  border-right: 1px solid rgba(42, 147, 213, 0.1);
+  border-bottom: 1px solid rgba(42, 147, 213, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  background-color: var(--card-bg-hover);
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-light);
+}
+
+.service-card h3 {
+  color: var(--light-text);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.service-card p {
+  color: var(--light-text);
+  line-height: 1.7;
+  flex-grow: 1;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  color: var(--primary-light);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  gap: 6px;
+}
+
+.service-link:hover {
+  color: var(--hover-color);
+  gap: 10px;
+}
+
+/* Projects section - Add subtle background gradient for depth */
+#projects {
+  background: linear-gradient(to bottom, var(--primary-dark) 0%, var(--light-blue) 100%);
+}
+
+/* Projects Gallery with enhanced visuals */
+.projects-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.project-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(42, 147, 213, 0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-image {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.1);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(19, 41, 61, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-overlay span {
+  color: var(--light-text);
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 2px solid var(--light-text);
+  border-radius: 4px;
+}
+
+.project-info {
+  padding: 25px;
+  background-color: var(--card-bg);
+  border-top: 1px solid rgba(42, 147, 213, 0.1);
+}
+
+.project-info h3 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  color: var(--light-text);
+}
+
+.project-info p {
+  font-size: 0.95rem;
+  color: var(--light-text);
+  margin-bottom: 0;
+  text-align: left;
+  opacity: 0.9;
+}
+
+/* Contact section - Enhance background for better contrast */
+#contact {
+  background-color: var(--dark-blue);
+  position: relative;
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(19, 41, 61, 0.95) 0%, rgba(19, 41, 61, 0.8) 100%);
+  z-index: 1;
+}
+
+#contact .section-title {
+  color: var(--light-text);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#contact .section-title::after {
+  background-color: var(--primary-light);
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.contact-info {
+  background-color: var(--primary-dark);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(42, 147, 213, 0.2);
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-icon {
+  font-size: 1.8rem;
+  margin-right: 20px;
+  color: var(--primary-light);
+}
+
+.contact-details h3 {
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  color: var(--light-text);
+}
+
+.contact-details p {
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: var(--light-text);
+  text-align: left;
+  opacity: 0.9;
+}
+
+.contact-details a {
+  color: var(--primary-light);
+}
+
+.contact-form {
+  background-color: var(--primary-dark);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(42, 147, 213, 0.2);
+}
+
+.contact-form h3 {
+  margin-bottom: 25px;
+  font-size: 1.4rem;
+  color: var(--light-text);
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--light-text);
+}
+
+.form-group input, 
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(42, 147, 213, 0.3);
+  background-color: rgba(19, 41, 61, 0.5);
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--light-text);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(42, 147, 213, 0.2);
+  background-color: rgba(19, 41, 61, 0.7);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.submit-button {
+  background-color: var(--primary-light);
+  color: var(--light-text);
+  border: none;
+  padding: 14px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Staggered animation for service cards and project cards */
+.services-grid .service-card,
+.projects-gallery .project-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.fade-in.visible .services-grid .service-card:nth-child(1),
+.fade-in.visible .projects-gallery .project-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.fade-in.visible .services-grid .service-card:nth-child(2),
+.fade-in.visible .projects-gallery .project-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.fade-in.visible .services-grid .service-card:nth-child(3),
+.fade-in.visible .projects-gallery .project-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.fade-in.visible .services-grid .service-card:nth-child(4),
+.fade-in.visible .projects-gallery .project-card:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+/* Contact container animation */
+.contact-container .contact-info,
+.contact-container .contact-form {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.fade-in.visible .contact-container .contact-info {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.fade-in.visible .contact-container .contact-form {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+/* Responsive design improvements */
+@media (max-width: 1200px) {
+  .section {
+    padding: 65px 0;
   }
   
   .section-title {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 30px;
-    text-align: center;
-    position: relative;
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .section {
+    padding: 60px 0;
   }
   
-  .section-title::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background-color: #13293d;
-    margin: 15px auto 0;
+  .section-title {
+    font-size: 2rem;
   }
   
-  /* Services grid */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  .contact-container {
+    grid-template-columns: 1fr;
     gap: 30px;
-    margin-top: 40px;
+  }
+  
+  .project-image {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  .services-grid,
+  .projects-gallery {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .contact-info,
+  .contact-form {
+    padding: 30px;
+  }
+  
+  .cta-button {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding: 40px 0;
+  }
+  
+  .section-title {
+    font-size: 1.7rem;
+  }
+  
+  .section-content p {
+    font-size: 1rem;
   }
   
   .service-card {
-    background-color: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    border-radius: 5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 25px 20px;
   }
   
-  .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  }
-  
-  .service-card h3 {
-    color: #13293d;
+  .service-icon {
+    font-size: 2rem;
     margin-bottom: 15px;
-    font-size: 1.3rem;
   }
   
-  .service-card p {
-    color: #666;
-    line-height: 1.6;
+  .project-image {
+    height: 200px;
   }
   
-  /* Contact info */
-  .contact-info {
-    margin-top: 30px;
-    background-color: #f0f0f0;
-    padding: 25px;
-    border-radius: 5px;
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
   
-  .contact-info p {
-    margin-bottom: 10px;
+  .contact-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
   }
   
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .section-title {
-      font-size: 2rem;
-    }
-    
-    .services-grid {
-      grid-template-columns: 1fr;
-    }
+  .contact-details {
+    text-align: center;
   }
+  
+  .contact-details p {
+    text-align: center;
+  }
+  
+  /* Ensure animations work on smaller screens */
+  .fade-in.visible .services-grid .service-card,
+  .fade-in.visible .projects-gallery .project-card,
+  .fade-in.visible .contact-container .contact-info,
+  .fade-in.visible .contact-container .contact-form {
+    transition-delay: 0.1s;
+  }
+}
