@@ -86,7 +86,7 @@ const Card: React.FC<CardProps> = ({
 
       {/* Always visible header */}
       <div className="card-header">
-        <h3>{`#${id} - ${name}`}</h3>
+        <h3>{`${name}`}</h3>
         <div className={`status-badge ${getStatusClass()}`}>
           {status || 'Unknown'}
         </div>
