@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProjectById } from '../../services/ProjectService';
 import Navbar from '../../components/Navbar/Navbar';
-import Card from '../../components/Card/Card';
 import ApartmentModal from '../../modal/Apartment Modal/ApartmentModal';
 import { Project as ProjectType, Apartment } from '../../types/ProjectType';
 import './Project.css';
@@ -30,9 +29,26 @@ const Project: React.FC = () => {
     fetchProject();
   }, [id]);
 
-  if (loading) return <div>Loading project...</div>;
-  if (error) return <div>{error}</div>;
-  if (!project) return <div>No project found</div>;
+  if (loading) return (
+    <div className="loading-container">
+      <div className="loading-spinner"></div>
+      <p>Loading project...</p>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="error-container">
+      <div className="error-icon">⚠️</div>
+      <p>{error}</p>
+    </div>
+  );
+  
+  if (!project) return (
+    <div className="error-container">
+      <div className="error-icon">⚠️</div>
+      <p>No project found</p>
+    </div>
+  );
 
   // Base URL for serving files
   const baseUrl = "http://localhost:8080";
@@ -45,78 +61,146 @@ const Project: React.FC = () => {
     setSelectedApartment(null);
   };
 
+  // Format status name for class (remove spaces and lowercase)
+  const getStatusClass = (status?: string) => {
+    if (!status) return '';
+    return status.toLowerCase().replace(/\s+/g, '-');
+  };
+
   return (
     <div className="project-page">
       <Navbar />
 
-      {/* Project Header: Using the first project image as a background */}
-      <div
-        className="project-background"
-        style={{
-          backgroundImage: project.image && project.image.length > 0 ? `url("${baseUrl}${encodeURI(project.image[0])}")` : undefined,
-          height: '10vh',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          marginBottom: '1rem',
-        }}
-      ></div>
-
-      {/* Apartments Section */}
-      <div className="apartments-section" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-        {project.apartments && project.apartments.map((apartment) => (
-          <div
-            key={apartment.id}
-            onClick={() => handleApartmentClick(apartment)}
-            style={{ cursor: 'pointer' }}
-          >
-            <Card
-              id={apartment.id}
-              name={apartment.name}
-              status={apartment.status}
-              image={
-                apartment.image && apartment.image.length > 0
-                  ? apartment.image
-                  : project.image
-              }
-            >
-              {/* Additional apartment details (if any) */}
-            </Card>
-          </div>
-        ))}
-      </div>
-
-      {/* Project Images Section */}
-      <div className="project-images-section" style={{ marginTop: '2rem' }}>
-        <h2>Project Images</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-          {project.image && project.image.map((img, index) => (
-            <div key={index} className="project-image" style={{ flex: '1 0 200px' }}>
-              <img
-                src={`${baseUrl}${encodeURI(img)}`}
-                alt={`Project image ${index + 1}`}
-                style={{ width: '100%' }}
-              />
+      {/* Project Header */}
+      <div className="project-header">
+        <div
+          className="project-banner"
+          style={{
+            backgroundImage: project.image && project.image.length > 0 
+              ? `url("${baseUrl}${encodeURI(project.image[0])}")` 
+              : undefined,
+          }}
+        >
+          <div className="project-overlay">
+            <div className="project-info">
+              <h1>{project.name}</h1>
+              {project.location && (
+                <p className="project-location">
+                  <span className="location-icon"></span>
+                  {project.location}
+                </p>
+              )}
             </div>
-          ))}
+            <div className="project-status-container">
+              {project.status && (
+                <span className={`status-badge status-${getStatusClass(project.status)}`}>
+                  {project.status}
+                </span>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Project Specs Section */}
-      <div className="project-specs-section" style={{ marginTop: '2rem' }}>
-        <h2>Project Specs</h2>
-        <ul>
-          {project.specs && project.specs.map((spec, index) => (
-            <li key={index}>
-              <a
-                href={`${baseUrl}${encodeURI(spec)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Spec File {index + 1}
-              </a>
-            </li>
-          ))}
-        </ul>
+      {/* Main Content */}
+      <div className="project-content">
+        {/* Apartments Section */}
+        {project.apartments && project.apartments.length > 0 && (
+          <div className="project-section">
+            <div className="section-header">
+              <h2 className="section-title">Available Apartments</h2>
+              <span className="apartments-count">{project.apartments.length} units</span>
+            </div>
+            <div className="apartments-grid">
+              {project.apartments.map((apartment) => (
+                <div
+                  key={apartment.id}
+                  className="apartment-card"
+                  onClick={() => handleApartmentClick(apartment)}
+                >
+                  <div className="apartment-image">
+                    {apartment.image && apartment.image.length > 0 ? (
+                      <img 
+                        src={`${baseUrl}${encodeURI(apartment.image[0])}`} 
+                        alt={apartment.name} 
+                      />
+                    ) : project.image && project.image.length > 0 ? (
+                      <img 
+                        src={`${baseUrl}${encodeURI(project.image[0])}`} 
+                        alt={apartment.name} 
+                      />
+                    ) : (
+                      <div className="no-image">No Image</div>
+                    )}
+                    <span className={`status-badge status-${getStatusClass(apartment.status)}`}>
+                      {apartment.status}
+                    </span>
+                  </div>
+                  <div className="apartment-details">
+                    <h3>{apartment.name}</h3>
+                    <div className="view-details">
+                      <span>View Details</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Project Description */}
+        {project.description && (
+          <div className="project-section">
+            <h2 className="section-title">About this project</h2>
+            <div className="project-description">
+              <p>{project.description}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Project Images Section */}
+        {project.image && project.image.length > 0 && (
+          <div className="project-section">
+            <h2 className="section-title">Project Gallery</h2>
+            <div className="project-gallery">
+              {project.image.map((img, index) => (
+                <div key={index} className="gallery-image">
+                  <img
+                    src={`${baseUrl}${encodeURI(img)}`}
+                    alt={`Project image ${index + 1}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Project Specs Section */}
+        {project.specs && project.specs.length > 0 && (
+          <div className="project-section">
+            <h2 className="section-title">Project Specifications</h2>
+            <div className="project-specs">
+              <ul className="specs-list">
+                {project.specs.map((spec, index) => (
+                  <li key={index} className="spec-item">
+                    <a
+                      href={`${baseUrl}${encodeURI(spec)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="spec-link"
+                    >
+                      <span className="spec-icon">📄</span>
+                      <span>Specification Document {index + 1}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Apartment Modal */}
