@@ -33,6 +33,7 @@
 .navbar-logo {
   display: flex;
   align-items: center;
+  padding-top: 8px;
 }
 
 .navbar-logo a {
@@ -41,12 +42,12 @@
 }
 
 .navbar-logo img {
-  height: 40px;
+  height: 60px;
   transition: all 0.3s ease;
 }
 
 .navbar.scrolled .navbar-logo img {
-  height: 35px;
+  height: 40px;
 }
 
 .nav-list {
