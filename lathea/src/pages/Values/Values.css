@@ -1,0 +1,428 @@
+/* Values.css - Standalone CSS for Core Values page */
+
+/* Color palette variables - consistent with other pages */
+:root {
+    --primary-dark: #13293D;    /* Dark navy blue */
+    --primary-light: #2A93D5;   /* Accent blue */
+    --light-blue: #1a4365;      /* Lighter blue for contrast */
+    --dark-blue: #0c1e2d;       /* Darker blue for sections */
+    --light-text: #ffffff;      /* Light text */
+    --card-bg: #13293D;         /* Card background */
+    --card-bg-hover: #1a4365;   /* Card hover background */
+    --border-color: #2A93D5;    /* Border color */
+    --hover-color: #3da5e7;     /* Hover state for accent blue */
+  }
+  
+  /* Global styles and typography */
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--light-text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: var(--primary-dark);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--light-text);
+    margin-top: 0;
+  }
+  
+  a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: var(--hover-color);
+  }
+  
+  /* Main content container */
+  .values-main-content {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--primary-dark);
+  }
+  
+  /* Enhanced section styling with improved contrast */
+  .values-section {
+    padding: 70px 0;
+    width: 100%;
+    position: relative;
+    background-color: var(--primary-dark);
+  }
+  
+  /* Add subtle section dividers */
+  .values-section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 1000px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(42, 147, 213, 0.3), transparent);
+  }
+  
+  .values-section-content {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Improved section titles with better contrast */
+  .values-section-title {
+    font-size: 2.5rem;
+    color: var(--light-text);
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding-bottom: 15px;
+  }
+  
+  .values-section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-light);
+    margin: 15px auto 0;
+  }
+  
+  /* Fade-in animation for sections */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Values intro section */
+  .values-intro {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    text-align: center;
+  }
+  
+  .values-intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--light-text);
+  }
+  
+  /* Values cards grid */
+  .values-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  .values-card {
+    background-color: var(--card-bg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 40px 30px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+    border-top: 4px solid var(--primary-light);
+    border-left: 1px solid rgba(42, 147, 213, 0.1);
+    border-right: 1px solid rgba(42, 147, 213, 0.1);
+    border-bottom: 1px solid rgba(42, 147, 213, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .values-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.05;
+    z-index: 0;
+  }
+  
+  .values-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    background-color: var(--card-bg-hover);
+  }
+  
+  /* Icon styling */
+  .values-card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    background-color: rgba(42, 147, 213, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    border: 2px solid rgba(42, 147, 213, 0.3);
+  }
+  
+  /* SVG icon styling */
+  .values-svg-icon {
+    width: 40px;
+    height: 40px;
+    stroke: var(--primary-light);
+    stroke-width: 2;
+    fill: none;
+  }
+  
+  .values-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--light-text);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .values-card p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--light-text);
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* CTA Buttons with improved contrast */
+  .values-cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 20px;
+  }
+  
+  .values-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .values-cta-button.primary {
+    background-color: var(--primary-light);
+    color: var(--light-text);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .values-cta-button.primary:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .values-cta-button.secondary {
+    background-color: transparent;
+    color: var(--light-text);
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .values-cta-button.secondary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Values section specific styling */
+  #values-section {
+    background-color: var(--primary-dark);
+    position: relative;
+  }
+  
+  #values-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.1;
+  }
+  
+  /* Animation for values elements */
+  .values-container .values-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .fade-in.visible .values-container .values-card:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+  }
+  
+  .fade-in.visible .values-container .values-card:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+  
+  .fade-in.visible .values-container .values-card:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+  }
+  
+  .fade-in.visible .values-container .values-card:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+  }
+  
+  /* Responsive design improvements */
+  @media (max-width: 1200px) {
+    .values-section {
+      padding: 65px 0;
+    }
+    
+    .values-section-title {
+      font-size: 2.2rem;
+    }
+    
+    .values-card h3 {
+      font-size: 1.6rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .values-section {
+      padding: 60px 0;
+    }
+    
+    .values-section-title {
+      font-size: 2rem;
+    }
+    
+    .values-intro p {
+      font-size: 1.1rem;
+    }
+    
+    .values-container {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    .values-card {
+      padding: 35px 25px;
+    }
+    
+    .values-card-icon {
+      width: 70px;
+      height: 70px;
+    }
+    
+    .values-svg-icon {
+      width: 35px;
+      height: 35px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .values-section {
+      padding: 50px 0;
+    }
+    
+    .values-section-title {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+    }
+    
+    .values-intro {
+      margin-bottom: 35px;
+    }
+    
+    .values-intro p {
+      font-size: 1.05rem;
+    }
+    
+    .values-cta-button {
+      padding: 12px 25px;
+      font-size: 0.9rem;
+    }
+    
+    .values-cta-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .values-cta-button {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .values-section {
+      padding: 40px 0;
+    }
+    
+    .values-section-title {
+      font-size: 1.7rem;
+    }
+    
+    .values-intro p {
+      font-size: 1rem;
+    }
+    
+    .values-card {
+      padding: 30px 20px;
+    }
+    
+    .values-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+    
+    .values-card p {
+      font-size: 1rem;
+    }
+    
+    .values-card-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+    }
+    
+    .values-svg-icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
