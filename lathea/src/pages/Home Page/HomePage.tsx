@@ -102,11 +102,6 @@ const HomePage: React.FC = () => {
               clients and communities.
             </p>
             
-            <div className="cta-container">
-              <button className="cta-button primary" onClick={() => scrollToSection('services')}>
-                Explore Our Services <ChevronRight size={18} />
-              </button>
-            </div>
           </div>
         </section>
         
