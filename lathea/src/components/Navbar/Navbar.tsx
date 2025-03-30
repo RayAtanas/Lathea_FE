@@ -90,6 +90,33 @@ const Navbar: React.FC = () => {
     scrollToSection(id);
   };
 
+  const handleChairmanClick = () => {
+   navigate("/chairman");
+  };
+
+  
+  const handleLatheaClick = () => {
+    navigate("/choose-lathea");
+   };
+
+   const handleMissionClick = () => {
+    navigate("/mission");
+   };
+   const handleValuesClick = () => {
+    navigate("/values");
+   };
+   const handleMarketClick = () => {
+    navigate("/market-studies");
+   };
+
+   const handleDevelopmentClick = () => {
+    navigate("/development");
+   };
+
+   const handleContractingClick = () => {
+    navigate("/contracting");
+   };
+
   // Handle logo click to navigate to home page
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -128,13 +155,13 @@ const Navbar: React.FC = () => {
               About us
             </a>
             <ul className="dropdown-menu">
-              <li><a href="#chairman" onClick={(e) => handleLinkClick(e, 'chairman')}>Message from our chairman</a></li>
-              <li><a href="#team" onClick={(e) => handleLinkClick(e, 'team')}>Our team</a></li>
+              <li><a href="/chairman" onClick={() => handleChairmanClick()}>Message from our chairman</a></li>
+              <li><a href="/choose-lathea" onClick={() => handleLatheaClick()}>Our team</a></li>
               <li><a href="#partners" onClick={(e) => handleLinkClick(e, 'partners')}>Our partners</a></li>
-              <li><a href="#why-lathea" onClick={(e) => handleLinkClick(e, 'why-lathea')}>Why choose Lathea Group</a></li>
-              <li><a href="#mission" onClick={(e) => handleLinkClick(e, 'mission')}>Our mission and vision</a></li>
-              <li><a href="#core-values" onClick={(e) => handleLinkClick(e, 'core-values')}>Our core values</a></li>
-              <li><a href="#market-studies" onClick={(e) => handleLinkClick(e, 'market-studies')}>Our market studies</a></li>
+              <li><a href="/choose-lathea" onClick={() => handleLatheaClick()}>Why choose Lathea Group</a></li>
+              <li><a href="/mission" onClick={() => handleMissionClick()}>Our mission and vision</a></li>
+              <li><a href="/values" onClick={() => handleValuesClick()}>Our core values</a></li>
+              <li><a href="/market-studies" onClick={() => handleMarketClick()}>Our market studies</a></li>
             </ul>
           </li>
           
@@ -147,8 +174,8 @@ const Navbar: React.FC = () => {
               Services
             </a>
             <ul className="dropdown-menu">
-              <li><a href="#real-estate-development" onClick={(e) => handleLinkClick(e, 'real-estate-development')}>Real estate development</a></li>
-              <li><a href="#real-estate-contracting" onClick={(e) => handleLinkClick(e, 'real-estate-contracting')}>Real estate contracting</a></li>
+              <li><a href="/development" onClick={() => handleDevelopmentClick()}>Real estate development</a></li>
+              <li><a href="/contracting" onClick={() => handleContractingClick()}>Real estate contracting</a></li>
               <li><a href="#real-estate-project-management" onClick={(e) => handleLinkClick(e, 'real-estate-project-management')}>Real estate project management</a></li>
               <li><a href="#real-estate-property-management" onClick={(e) => handleLinkClick(e, 'real-estate-property-management')}>Real estate property management</a></li>
               <li><a href="#real-estate-consultancy" onClick={(e) => handleLinkClick(e, 'real-estate-consultancy')}>Real estate consultancy and interior design</a></li>

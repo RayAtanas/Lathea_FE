@@ -152,22 +152,9 @@
   display: none; /* Remove the bottom indicator for dropdown items */
 }
 
-/* Improved dropdown indicator */
+/* REMOVE dropdown indicator */
 .nav-item.dropdown > a::after {
-  content: '';
-  display: inline-block;
-  margin-left: 6px;
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  transform: rotate(45deg) translateY(-3px);
-  transition: transform 0.3s;
-}
-
-.nav-item.dropdown:hover > a::after {
-  transform: rotate(225deg) translateY(-1px);
-  border-color: #2A93D5;
+  display: none; /* This removes the dropdown indicators */
 }
 
 /* Mobile menu toggle */
@@ -290,12 +277,8 @@
     border-left: none;
   }
   
-  /* Change dropdown arrow for mobile */
+  /* Change dropdown arrow for mobile - REMOVED */
   .nav-item.dropdown > a::after {
-    transform: rotate(45deg) translateY(-3px);
-  }
-  
-  .nav-item.dropdown.active > a::after {
-    transform: rotate(225deg) translateY(-1px);
+    display: none; /* Remove dropdown indicators in mobile view */
   }
 }
