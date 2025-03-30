@@ -1,0 +1,354 @@
+/* ChairmanMessage.css - Standalone CSS for Chairman's Message page */
+
+/* Color palette variables - copied from HomePage.css */
+:root {
+    --primary-dark: #13293D;    /* Dark navy blue */
+    --primary-light: #2A93D5;   /* Accent blue */
+    --light-blue: #1a4365;      /* Lighter blue for contrast */
+    --dark-blue: #0c1e2d;       /* Darker blue for sections */
+    --light-text: #ffffff;      /* Light text */
+    --card-bg: #13293D;         /* Card background */
+    --card-bg-hover: #1a4365;   /* Card hover background */
+    --border-color: #2A93D5;    /* Border color */
+    --hover-color: #3da5e7;     /* Hover state for accent blue */
+  }
+  
+  /* Global styles and typography */
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--light-text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: var(--primary-dark);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--light-text);
+    margin-top: 0;
+  }
+  
+  a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: var(--hover-color);
+  }
+  
+  /* Main content container */
+  .chairman-main-content {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--primary-dark);
+  }
+  
+  /* Enhanced section styling with improved contrast */
+  .chairman-section {
+    padding: 70px 0;
+    width: 100%;
+    position: relative;
+    background-color: var(--primary-dark);
+  }
+  
+  /* Add subtle section dividers */
+  .chairman-section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 1000px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(42, 147, 213, 0.3), transparent);
+  }
+  
+  .chairman-section-content {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Improved section titles with better contrast */
+  .chairman-section-title {
+    font-size: 2.5rem;
+    color: var(--light-text);
+    margin-bottom: 35px;
+    text-align: center;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding-bottom: 15px;
+  }
+  
+  .chairman-section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-light);
+    margin: 15px auto 0;
+  }
+  
+  /* Fade-in animation for sections */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* CTA Buttons with improved contrast */
+  .chairman-cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 20px;
+  }
+  
+  .chairman-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .chairman-cta-button.primary {
+    background-color: var(--primary-light);
+    color: var(--light-text);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .chairman-cta-button.primary:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .chairman-cta-button.secondary {
+    background-color: transparent;
+    color: var(--light-text);
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .chairman-cta-button.secondary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Chairman message container - creates a two-column layout */
+  .chairman-container {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 40px;
+    margin: 50px 0;
+    align-items: start;
+  }
+  
+  /* Text column styling */
+  .chairman-text {
+    padding-right: 20px;
+  }
+  
+  .chairman-text p {
+    color: var(--light-text);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    text-align: left;
+  }
+  
+  .chairman-text p strong {
+    color: var(--primary-light);
+    font-weight: 600;
+  }
+  
+  /* Image column styling */
+  .chairman-image {
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(42, 147, 213, 0.2);
+    background-color: var(--card-bg);
+  }
+  
+  .chairman-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  
+  .chairman-image:hover img {
+    transform: scale(1.03);
+  }
+  
+  .chairman-name {
+    padding: 20px;
+    background-color: var(--primary-dark);
+    border-top: 2px solid var(--primary-light);
+  }
+  
+  .chairman-name h3 {
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  .chairman-name p {
+    color: var(--primary-light);
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  
+  /* Chairman message section specific styling */
+  #chairman-message {
+    background-color: var(--primary-dark);
+    position: relative;
+  }
+  
+  #chairman-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.1;
+  }
+  
+  /* Animation for chairman content */
+  .chairman-container .chairman-text,
+  .chairman-container .chairman-image {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .fade-in.visible .chairman-container .chairman-text {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+  }
+  
+  .fade-in.visible .chairman-container .chairman-image {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+  }
+  
+  /* Responsive design improvements */
+  @media (max-width: 1200px) {
+    .chairman-section {
+      padding: 65px 0;
+    }
+    
+    .chairman-section-title {
+      font-size: 2.2rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .chairman-section {
+      padding: 60px 0;
+    }
+    
+    .chairman-section-title {
+      font-size: 2rem;
+    }
+    
+    .chairman-container {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .chairman-text {
+      padding-right: 0;
+      order: 2;
+    }
+    
+    .chairman-image {
+      order: 1;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .chairman-section {
+      padding: 50px 0;
+    }
+    
+    .chairman-section-title {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+    
+    .chairman-cta-button {
+      padding: 12px 25px;
+      font-size: 0.9rem;
+    }
+    
+    .chairman-cta-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .chairman-cta-button {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .chairman-section {
+      padding: 40px 0;
+    }
+    
+    .chairman-section-title {
+      font-size: 1.7rem;
+    }
+    
+    .chairman-text p {
+      font-size: 1rem;
+    }
+    
+    .chairman-name h3 {
+      font-size: 1.2rem;
+    }
+    
+    .chairman-name p {
+      font-size: 0.9rem;
+    }
+  }
