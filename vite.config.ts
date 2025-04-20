@@ -1,10 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
 export default defineConfig(({ command }) => {
-  const config = {
+  return {
     plugins: [react()],
-    base: command === 'serve' ? '/' : '/Lathea_FE/'
+    base: command === 'serve' ? '/' : '/Lathea_FE/',
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, 'src'),
+      },
+    },
   }
-  return config
 })
