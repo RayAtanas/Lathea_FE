@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { getAllProjects, getAllApartments } from '../../services/AdminService';
-import { getAllEmployees, createEmployee, updateEmployee } from '../../services/EmployeeService';
+import { getAllEmployees } from '../../services/EmployeeService';
 import { Project, Apartment, Employee } from '../../types/ProjectType';
 import ProjectCreationModal from '../../modal/Create Project Modal/ProjectCreationModal';
 import ApartmentCreationModal from '../../modal/Create Apartment Modal/ApartmentCreationModal';

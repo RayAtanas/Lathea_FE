@@ -8,9 +8,6 @@ import goelantLogo from '../../assets/Goeland-Horizontal-Logo.png';
 import nelazaLogo from '../../assets/NELAZA-LOGO.png';
 import paraschouLogo from '../../assets/Paraschou_logo.png';
 import eggerLogo from '../../assets/gen_egger_logo_en.svg';
-import pacmLogo from '../../assets/partners/pacm-logo.png';
-import olpineLogo from '../../assets/partners/olpine-logo.png';
-import hebLogo from '../../assets/partners/heb-logo.png';
 
 // Partner data
 const partners = [

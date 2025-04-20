@@ -5,33 +5,7 @@ import { getImageUrl, handleImageError } from '../../utils/ImageUtils';
 import './TeamPage.css';
 import Navbar from '../../components/Navbar/Navbar';
 
-// SVG Icons for team specialties
-const LeadershipIcon: React.FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A93D5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="team-svg-icon">
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-    <circle cx="12" cy="7" r="4"></circle>
-  </svg>
-);
 
-const ResearchIcon: React.FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A93D5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="team-svg-icon">
-    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-  </svg>
-);
-
-const ConsultantIcon: React.FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A93D5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="team-svg-icon">
-    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-  </svg>
-);
-
-const OperationsIcon: React.FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2A93D5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="team-svg-icon">
-    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-  </svg>
-);
 
 const LinkedInIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#0077b5" stroke="none">
@@ -75,7 +49,7 @@ interface TeamMemberCardProps {
   groupType: string;
 }
 
-const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ employee, groupType }) => {
+const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ employee }) => {
   const [imageLoaded, setImageLoaded] = useState<boolean>(!!employee.image);
   const [imageUrl, setImageUrl] = useState<string | null>(
     employee.image ? getImageUrl(employee.image) || null : null
@@ -99,15 +73,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ employee, groupType }) 
   };
 
   // Get the appropriate icon based on team type
-  const getTeamIcon = (): JSX.Element => {
-    switch(groupType) {
-      case 'Leadership Team': return <LeadershipIcon />;
-      case 'Research Team': return <ResearchIcon />;
-      case 'Consultants': return <ConsultantIcon />;
-      case 'Operations': return <OperationsIcon />;
-      default: return <OperationsIcon />;
-    }
-  };
+  
 
   return (
     <div className="team-member-card">
@@ -129,13 +95,6 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ employee, groupType }) 
         <h3 className="member-name">{employee.name}</h3>
         {employee.title && <p className="member-title">{employee.title}</p>}
         
-        {employee.skills && employee.skills.length > 0 && (
-          <div className="member-skills">
-            {employee.skills.slice(0, 3).map((skill, index) => (
-              <span key={index} className="skill-tag">{skill}</span>
-            ))}
-          </div>
-        )}
         
         <div className="member-contact">
           <a href={`mailto:${employee.email}`} className="contact-link" aria-label={`Email ${employee.name}`}>

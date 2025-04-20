@@ -3,7 +3,7 @@ import './PartnerCard.css';
 
 interface PartnerCardProps {
   name: string;
-  imageUrl: string;
+  imageUrl?: string;
   websiteUrl: string;
   description?: string;
 }

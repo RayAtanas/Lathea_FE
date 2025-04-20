@@ -38,7 +38,7 @@ const IconQuality = () => (
 const ProjectManagement = () => {
   useEffect(() => {
     // Function to check if element is in viewport
-    const isInViewport = (element) => {
+    const isInViewport = (element : HTMLElement) => {
       const rect = element.getBoundingClientRect();
       return (
         rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85 &&
@@ -48,7 +48,7 @@ const ProjectManagement = () => {
 
     // Function to handle scroll and add visible class
     const handleScroll = () => {
-      const fadeElements = document.querySelectorAll('.fade-in');
+      const fadeElements = document.querySelectorAll<HTMLElement>('.fade-in');
       fadeElements.forEach((element) => {
         if (isInViewport(element)) {
           element.classList.add('visible');
