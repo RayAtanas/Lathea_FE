@@ -6,7 +6,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: #13293D;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@
 }
 
 .modal-content {
-  background: #1e1e1e;
+  background: #13293D !important;
   max-width: 1100px;
   width: 95%;
   max-height: 90vh;
@@ -40,7 +40,7 @@
 }
 
 .modal-content::-webkit-scrollbar-track {
-  background: #1e1e1e;
+  background: #13293D;
   border-radius: 0 12px 12px 0;
 }
 
@@ -415,7 +415,7 @@
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s;
-  background-color: #242424;
+  background-color: #1a4365;
 }
 
 .floor-plan-item:hover {
@@ -437,7 +437,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background-color: #2c2c2c;
+  background-color: #1a4365;
 }
 
 .floor-plan-caption {
@@ -489,6 +489,7 @@
     width: 100%;
     border-radius: 0;
     height: 100vh;
+    background-color: #13293D;
     max-height: 100vh;
   }
   
