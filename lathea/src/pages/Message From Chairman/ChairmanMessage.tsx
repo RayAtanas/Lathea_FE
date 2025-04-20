@@ -71,6 +71,7 @@ const ChairmanMessage = () => {
               <div className="chairman-name">
                 <h3>RICHARD EL KHOURY (DBA)</h3>
                 <p>Chairman</p>
+                <p><strong>"WE WRITE WHAT WE SAY, WE DO WHAT WE WRITE".</strong></p>
               </div>
             </div>
           </div>

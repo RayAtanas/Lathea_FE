@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { getAllProjects, getAllApartments } from '../../services/AdminService';
-import { Project, Apartment } from '../../types/ProjectType';
+import { getAllEmployees, createEmployee, updateEmployee } from '../../services/EmployeeService';
+import { Project, Apartment, Employee } from '../../types/ProjectType';
 import ProjectCreationModal from '../../modal/Create Project Modal/ProjectCreationModal';
 import ApartmentCreationModal from '../../modal/Create Apartment Modal/ApartmentCreationModal';
-import Card from '../../components/Card/Card'; // Import the updated Card component
+import EmployeeCreationModal from '../../modal/Employee Creation Modal/EmployeeCreationModal';
+import Card from '../../components/Card/Card';
+import { getImageUrl, handleImageError } from '../../utils/ImageUtils';
 import './AdminDashboard.css';
+import Navbar from '../../components/Navbar/Navbar';
 
 // Icon components for better visual cues
 const ProjectIcon = () => (
@@ -19,6 +23,13 @@ const ApartmentIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
     <polyline points="9 22 9 12 15 12 15 22" />
+  </svg>
+);
+
+const EmployeeIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
   </svg>
 );
 
@@ -44,14 +55,16 @@ const EmptyState: React.FC<{
 }> = ({ type, onCreateClick }) => (
   <div className="empty-state">
     <div className="empty-state-icon">
-      {type === 'projects' ? <ProjectIcon /> : <ApartmentIcon />}
+      {type === 'projects' ? <ProjectIcon /> : 
+       type === 'apartments' ? <ApartmentIcon /> : <EmployeeIcon />}
     </div>
     <p className="empty-state-message">
       No {type} found
     </p>
     <button className="action-button" onClick={onCreateClick}>
       <PlusIcon />
-      Create {type === 'projects' ? 'Project' : 'Apartment'}
+      Create {type === 'projects' ? 'Project' : 
+             type === 'apartments' ? 'Apartment' : 'Employee'}
     </button>
   </div>
 );
@@ -63,21 +76,90 @@ const LoadingState = () => (
   </div>
 );
 
+// Avatar placeholder component
+const AvatarPlaceholder: React.FC<{ name: string }> = ({ name }) => (
+  <div className="avatar-placeholder">
+    {name.charAt(0).toUpperCase()}
+  </div>
+);
+
+// Employee Card component for specialized employee display
+const EmployeeCard: React.FC<{
+  employee: Employee;
+  onClick: () => void;
+}> = ({ employee, onClick }) => {
+  const [imageLoaded, setImageLoaded] = useState<boolean>(!!employee.image);
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    employee.image ? getImageUrl(employee.image) || null : null
+  );
+
+  // Handle image error
+  const handleImageLoadError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    handleImageError(e, employee.image, (newUrl) => {
+      if (newUrl) {
+        setImageUrl(newUrl);
+      } else {
+        setImageLoaded(false);
+      }
+    });
+  };
+
+  return (
+    <div className="card employee-card" onClick={onClick}>
+      <div className="card-header">
+        <div className="card-avatar">
+          {imageLoaded && imageUrl ? (
+            <img 
+              src={imageUrl} 
+              alt={employee.name} 
+              className="employee-avatar" 
+              onError={handleImageLoadError}
+              onLoad={() => setImageLoaded(true)}
+            />
+          ) : (
+            <AvatarPlaceholder name={employee.name} />
+          )}
+        </div>
+        <div className="card-title">
+          <h3>{employee.name}</h3>
+          <span className="card-status status-active">
+            {employee.title || 'Employee'}
+          </span>
+        </div>
+      </div>
+      <div className="card-content">
+        {employee.title && <p className="card-position">{employee.title}</p>}
+        {employee.email && <p className="card-contact">{employee.email}</p>}
+        {employee.phoneNumber && <p className="card-contact">{employee.phoneNumber}</p>}
+        {employee.linkedIn && (
+          <p className="card-contact linkedin">
+            <span className="linkedin-icon">in</span>
+            {employee.linkedIn.replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//, '')}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const AdminDashboard: React.FC = () => {
   // State for projects and apartments list
   const [projects, setProjects] = useState<Project[]>([]);
   const [apartments, setApartments] = useState<Apartment[]>([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
   
   // State for active tab
-  const [activeTab, setActiveTab] = useState<'projects' | 'apartments'>('projects');
+  const [activeTab, setActiveTab] = useState<'projects' | 'apartments' | 'employees'>('projects');
   
   // State for modal visibility
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [isApartmentModalOpen, setIsApartmentModalOpen] = useState(false);
+  const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
   
-  // State for selected project or apartment for editing
+  // State for selected project, apartment, or employee for editing
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedApartment, setSelectedApartment] = useState<Apartment | null>(null);
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
   
   // State for loading indicators
   const [isLoading, setIsLoading] = useState(false);
@@ -87,6 +169,7 @@ const AdminDashboard: React.FC = () => {
   useEffect(() => {
     fetchProjects();
     fetchApartments();
+    fetchEmployees();
   }, []);
 
   // Fetch projects with error handling
@@ -119,6 +202,21 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  // Fetch employees with error handling
+  const fetchEmployees = async () => {
+    setIsLoading(true);
+    try {
+      const data = await getAllEmployees();
+      setEmployees(data);
+      setErrorMessage('');
+    } catch (error) {
+      console.error('Error fetching employees:', error);
+      setErrorMessage('Failed to load employees. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Memoized project map for better performance
   const projectsMap = useMemo(() => {
     return projects.reduce((acc, project) => {
@@ -141,6 +239,13 @@ const AdminDashboard: React.FC = () => {
     setIsApartmentModalOpen(false);
   };
 
+  // Handle employee created or updated
+  const handleEmployeeSaved = () => {
+    fetchEmployees();
+    setSelectedEmployee(null);
+    setIsEmployeeModalOpen(false);
+  };
+
   // Open project modal for creation
   const handleCreateProject = () => {
     setSelectedProject(null);
@@ -151,6 +256,12 @@ const AdminDashboard: React.FC = () => {
   const handleCreateApartment = () => {
     setSelectedApartment(null);
     setIsApartmentModalOpen(true);
+  };
+
+  // Open employee modal for creation
+  const handleCreateEmployee = () => {
+    setSelectedEmployee(null);
+    setIsEmployeeModalOpen(true);
   };
 
   // Handle project card click for editing
@@ -165,6 +276,12 @@ const AdminDashboard: React.FC = () => {
     setIsApartmentModalOpen(true);
   };
 
+  // Handle employee card click for editing
+  const handleEmployeeClick = (employee: Employee) => {
+    setSelectedEmployee(employee);
+    setIsEmployeeModalOpen(true);
+  };
+
   // Get project name by ID using the memoized map
   const getProjectNameById = (projectId: number): string => {
     return projectsMap[projectId]?.name || 'Unknown Project';
@@ -172,6 +289,7 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className="admin-dashboard">
+      <Navbar/>
       
       <header className="dashboard-header">
         <h1>Admin Dashboard</h1>
@@ -191,6 +309,14 @@ const AdminDashboard: React.FC = () => {
           >
             <PlusIcon />
             Create Apartment
+          </button>
+          <button 
+            className="action-button"
+            onClick={handleCreateEmployee}
+            aria-label="Create Employee"
+          >
+            <PlusIcon />
+            Create Employee
           </button>
         </div>
       </header>
@@ -224,6 +350,17 @@ const AdminDashboard: React.FC = () => {
         >
           <ApartmentIcon />
           Apartments
+        </button>
+        <button 
+          className={`tab-button ${activeTab === 'employees' ? 'active' : ''}`}
+          onClick={() => setActiveTab('employees')}
+          role="tab"
+          aria-selected={activeTab === 'employees'}
+          aria-controls="employees-panel"
+          id="employees-tab"
+        >
+          <EmployeeIcon />
+          Employees
         </button>
       </div>
 
@@ -297,6 +434,36 @@ const AdminDashboard: React.FC = () => {
         </div>
       )}
 
+      {activeTab === 'employees' && (
+        <div 
+          className="cards-container" 
+          role="tabpanel" 
+          id="employees-panel"
+          aria-labelledby="employees-tab"
+        >
+          <h2>
+            <EmployeeIcon />
+            Employees ({employees.length})
+          </h2>
+          
+          {isLoading ? (
+            <LoadingState />
+          ) : employees.length === 0 ? (
+            <EmptyState type="employees" onCreateClick={handleCreateEmployee} />
+          ) : (
+            <div className="cards-grid">
+              {employees.map(employee => (
+                <EmployeeCard
+                  key={employee.id}
+                  employee={employee}
+                  onClick={() => handleEmployeeClick(employee)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Project Modal - Handles both create and edit */}
       <ProjectCreationModal 
         isOpen={isProjectModalOpen}
@@ -318,6 +485,17 @@ const AdminDashboard: React.FC = () => {
         onApartmentCreated={handleApartmentSaved}
         apartmentToEdit={selectedApartment}
         projects={projects}
+      />
+
+      {/* Employee Modal - Handles both create and edit */}
+      <EmployeeCreationModal 
+        isOpen={isEmployeeModalOpen}
+        onClose={() => {
+          setIsEmployeeModalOpen(false);
+          setSelectedEmployee(null);
+        }}
+        onEmployeeCreated={handleEmployeeSaved}
+        employeeToEdit={selectedEmployee}
       />
     </div>
   );
