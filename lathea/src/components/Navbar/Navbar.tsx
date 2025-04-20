@@ -99,6 +99,10 @@ const Navbar: React.FC = () => {
     navigate("/choose-lathea");
    };
 
+   const handleTeamClick = () => {
+    navigate("/team");
+   };
+
    const handleMissionClick = () => {
     navigate("/mission");
    };
@@ -115,6 +119,24 @@ const Navbar: React.FC = () => {
 
    const handleContractingClick = () => {
     navigate("/contracting");
+   };
+   const handleProjectManagementClick = () => {
+    navigate("/project-management");
+   };
+   const handlePMClick = () => {
+    navigate("/property-management");
+   };
+
+   const handleConsultancyClick = () => {
+    navigate("/consultancy");
+   };
+
+   const handleInteriorClick = () => {
+    navigate("/interior");
+   };
+
+   const handlePartnerClick = () => {
+    navigate("/partners");
    };
 
   // Handle logo click to navigate to home page
@@ -156,8 +178,8 @@ const Navbar: React.FC = () => {
             </a>
             <ul className="dropdown-menu">
               <li><a href="/chairman" onClick={() => handleChairmanClick()}>Message from our chairman</a></li>
-              <li><a href="/choose-lathea" onClick={() => handleLatheaClick()}>Our team</a></li>
-              <li><a href="#partners" onClick={(e) => handleLinkClick(e, 'partners')}>Our partners</a></li>
+              <li><a href="/team" onClick={() => handleTeamClick()}>Our team</a></li>
+              <li><a href="/partners" onClick={() => handlePartnerClick}>Our partners</a></li>
               <li><a href="/choose-lathea" onClick={() => handleLatheaClick()}>Why choose Lathea Group</a></li>
               <li><a href="/mission" onClick={() => handleMissionClick()}>Our mission and vision</a></li>
               <li><a href="/values" onClick={() => handleValuesClick()}>Our core values</a></li>
@@ -176,9 +198,10 @@ const Navbar: React.FC = () => {
             <ul className="dropdown-menu">
               <li><a href="/development" onClick={() => handleDevelopmentClick()}>Real estate development</a></li>
               <li><a href="/contracting" onClick={() => handleContractingClick()}>Real estate contracting</a></li>
-              <li><a href="#real-estate-project-management" onClick={(e) => handleLinkClick(e, 'real-estate-project-management')}>Real estate project management</a></li>
-              <li><a href="#real-estate-property-management" onClick={(e) => handleLinkClick(e, 'real-estate-property-management')}>Real estate property management</a></li>
-              <li><a href="#real-estate-consultancy" onClick={(e) => handleLinkClick(e, 'real-estate-consultancy')}>Real estate consultancy and interior design</a></li>
+              <li><a href="/project-management" onClick={() => handleProjectManagementClick()}>Real estate project management</a></li>
+              <li><a href="/property-management" onClick={() => handlePMClick()}>Real estate property management</a></li>
+              <li><a href="/consultancy" onClick={() => handleConsultancyClick()}>Real estate consultancy</a></li>
+              <li><a href="/interior" onClick={() => handleInteriorClick}>interior design</a></li>
             </ul>
           </li>
           
