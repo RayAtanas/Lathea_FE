@@ -1,5 +1,9 @@
 {
   "homepage": "https://rayatanas.github.io/Lathea_FE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RayAtanas/Lathea_FE.git"
+  },
   "name": "lathea",
   "private": true,
   "version": "0.0.0",
@@ -9,7 +13,7 @@
   "dev": "vite",
   "build": "tsc && vite build",
   "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
+   "deploy": "gh-pages --repo https://github.com/RayAtanas/Lathea_FE.git -d dist"
 },
 
   "dependencies": {
