@@ -1,0 +1,998 @@
+/* InteriorDesign.css - Standalone CSS for Interior Design page */
+
+/* Color palette variables - consistent with other pages */
+:root {
+    --primary-dark: #13293D;    /* Dark navy blue */
+    --primary-light: #2A93D5;   /* Accent blue */
+    --light-blue: #1a4365;      /* Lighter blue for contrast */
+    --dark-blue: #0c1e2d;       /* Darker blue for sections */
+    --light-text: #ffffff;      /* Light text */
+    --card-bg: #13293D;         /* Card background */
+    --card-bg-hover: #1a4365;   /* Card hover background */
+    --border-color: #2A93D5;    /* Border color */
+    --hover-color: #3da5e7;     /* Hover state for accent blue */
+  }
+  
+  /* Global styles and typography */
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--light-text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: var(--primary-dark);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--light-text);
+    margin-top: 0;
+  }
+  
+  a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: var(--hover-color);
+  }
+  
+  /* Main content container */
+  .interior-main-content {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--primary-dark);
+  }
+  
+  /* Enhanced section styling with improved contrast */
+  .interior-section {
+    padding: 70px 0;
+    width: 100%;
+    position: relative;
+    background-color: var(--primary-dark);
+  }
+  
+  /* Add subtle section dividers */
+  .interior-section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 1000px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(42, 147, 213, 0.3), transparent);
+  }
+  
+  .interior-section-content {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Improved section titles with better contrast */
+  .interior-section-title {
+    font-size: 2.5rem;
+    color: var(--light-text);
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding-bottom: 15px;
+  }
+  
+  .interior-section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-light);
+    margin: 15px auto 0;
+  }
+  
+  /* Fade-in animation for sections */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Interior Design intro section */
+  .interior-intro {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    text-align: center;
+  }
+  
+  .interior-intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--light-text);
+  }
+  
+  /* Interior Design features section */
+  .interior-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 60px;
+  }
+  
+  .interior-feature-item {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+    border-top: 3px solid var(--primary-light);
+    border-left: 1px solid rgba(42, 147, 213, 0.1);
+    border-right: 1px solid rgba(42, 147, 213, 0.1);
+    border-bottom: 1px solid rgba(42, 147, 213, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    min-height: 320px;
+  }
+  
+  .interior-feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    background-color: var(--card-bg-hover);
+  }
+  
+  .interior-icon-container {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(42, 147, 213, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 2px solid rgba(42, 147, 213, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .interior-feature-item:hover .interior-icon-container {
+    background-color: rgba(42, 147, 213, 0.2);
+    transform: scale(1.1);
+  }
+  
+  .interior-svg-icon {
+    width: 35px;
+    height: 35px;
+    stroke: var(--primary-light);
+    stroke-width: 2;
+    fill: none;
+  }
+  
+  .interior-feature-item h3 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--light-text);
+    flex-shrink: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .interior-feature-item p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--light-text);
+    opacity: 0.9;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 0;
+    width: 100%;
+  }
+  
+  /* Interior Design showcase section */
+  .interior-showcase {
+    margin-bottom: 60px;
+  }
+  
+  .interior-showcase h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    text-align: center;
+  }
+  
+  .interior-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .interior-showcase-item {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+  }
+  
+  .interior-showcase-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  }
+  
+  .interior-showcase-img-placeholder {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .interior-showcase-img-placeholder.residential {
+    background-color: var(--light-blue);
+    background-image: linear-gradient(135deg, var(--light-blue) 25%, var(--dark-blue) 25%, var(--dark-blue) 50%, var(--light-blue) 50%, var(--light-blue) 75%, var(--dark-blue) 75%, var(--dark-blue) 100%);
+    background-size: 20px 20px;
+  }
+  
+  .interior-showcase-img-placeholder.commercial {
+    background-color: var(--dark-blue);
+    background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+    background-size: 10px 10px;
+  }
+  
+  .interior-showcase-img-placeholder.renovation {
+    background-color: var(--light-blue);
+    background-image: linear-gradient(45deg, var(--dark-blue) 25%, transparent 25%), 
+                      linear-gradient(-45deg, var(--dark-blue) 25%, transparent 25%), 
+                      linear-gradient(45deg, transparent 75%, var(--dark-blue) 75%), 
+                      linear-gradient(-45deg, transparent 75%, var(--dark-blue) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  
+  .interior-showcase-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(19, 41, 61, 0.3), rgba(19, 41, 61, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  .interior-showcase-item:hover .interior-showcase-overlay {
+    background: linear-gradient(to bottom, rgba(19, 41, 61, 0.2), rgba(19, 41, 61, 0.7));
+  }
+  
+  .interior-showcase-overlay h4 {
+    font-size: 1.5rem;
+    color: var(--light-text);
+    text-align: center;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .interior-showcase-content {
+    padding: 20px;
+  }
+  
+  .interior-showcase-content p {
+    font-size: 0.95rem;
+    color: var(--light-text);
+    opacity: 0.9;
+    margin: 0;
+  }
+  
+  /* Interior Design process section */
+  .interior-process-wrapper {
+    margin-bottom: 60px;
+  }
+  
+  .interior-process {
+    background-color: var(--light-blue);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .interior-process::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.1;
+    z-index: 0;
+  }
+  
+  .interior-process h3 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--light-text);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .interior-process-flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .interior-process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 18%;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+  }
+  
+  .interior-process-step:hover {
+    transform: translateY(-5px);
+  }
+  
+  .interior-step-number {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-light);
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .interior-step-content {
+    background-color: var(--primary-dark);
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    border-top: 2px solid var(--primary-light);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    height: 100%;
+  }
+  
+  .interior-step-content h4 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--light-text);
+    flex-shrink: 0;
+  }
+  
+  .interior-step-content p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    color: var(--light-text);
+    opacity: 0.9;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .interior-process-arrow {
+    flex-grow: 1;
+    height: 2px;
+    background-color: var(--primary-light);
+    margin: 0 5px;
+    position: relative;
+    top: 25px;
+    opacity: 0.7;
+  }
+  
+  .interior-process-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid var(--primary-light);
+  }
+  
+  /* Interior Design services section */
+  .interior-services {
+    background-color: var(--dark-blue);
+    border-radius: 10px;
+    padding: 40px;
+    margin-bottom: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid var(--primary-light);
+  }
+  
+  .interior-services h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    text-align: center;
+  }
+  
+  .interior-services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  
+  .interior-service-column {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .interior-service-category {
+    margin-bottom: 30px;
+  }
+  
+  .interior-service-category h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary-light);
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .interior-service-category h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-light);
+  }
+  
+  .interior-service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .interior-service-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.95rem;
+  }
+  
+  .interior-service-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+  }
+  
+  /* Interior Design portfolio section */
+  .interior-portfolio {
+    margin-bottom: 60px;
+  }
+  
+  .interior-portfolio h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    text-align: center;
+  }
+  
+  .interior-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .interior-portfolio-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .interior-portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  }
+  
+  .interior-portfolio-img-placeholder {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .interior-portfolio-img-placeholder.project1 {
+    background-color: var(--light-blue);
+    background-image: linear-gradient(135deg, var(--light-blue) 25%, var(--dark-blue) 25%, var(--dark-blue) 50%, var(--light-blue) 50%, var(--light-blue) 75%, var(--dark-blue) 75%, var(--dark-blue) 100%);
+    background-size: 20px 20px;
+  }
+  
+  .interior-portfolio-img-placeholder.project2 {
+    background-color: var(--dark-blue);
+    background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+    background-size: 10px 10px;
+  }
+  
+  .interior-portfolio-img-placeholder.project3 {
+    background-color: var(--primary-dark);
+    background-image: linear-gradient(45deg, var(--light-blue) 25%, transparent 25%), 
+                      linear-gradient(-45deg, var(--light-blue) 25%, transparent 25%), 
+                      linear-gradient(45deg, transparent 75%, var(--light-blue) 75%), 
+                      linear-gradient(-45deg, transparent 75%, var(--light-blue) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  
+  .interior-portfolio-img-placeholder.project4 {
+    background-color: var(--dark-blue);
+    background-image: linear-gradient(0deg, var(--light-blue) 25%, transparent 25%), 
+                      linear-gradient(90deg, var(--light-blue) 25%, transparent 25%);
+    background-size: 20px 20px;
+  }
+  
+  .interior-portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(19, 41, 61, 0.3), rgba(19, 41, 61, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  .interior-portfolio-item:hover .interior-portfolio-overlay {
+    background: linear-gradient(to bottom, rgba(19, 41, 61, 0.2), rgba(19, 41, 61, 0.7));
+  }
+  
+  .interior-portfolio-overlay span {
+    font-size: 1.2rem;
+    color: var(--light-text);
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* CTA Buttons with improved contrast */
+  .interior-cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 20px;
+  }
+  
+  .interior-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .interior-cta-button.primary {
+    background-color: var(--primary-light);
+    color: var(--light-text);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .interior-cta-button.primary:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .interior-cta-button.secondary {
+    background-color: transparent;
+    color: var(--light-text);
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .interior-cta-button.secondary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Interior Design section specific styling */
+  #interior-design-section {
+    background-color: var(--primary-dark);
+    position: relative;
+  }
+  
+  #interior-design-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--light-blue) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.1;
+  }
+  
+  /* Animation for interior design elements */
+  .interior-feature-item,
+  .interior-showcase-item,
+  .interior-process-wrapper,
+  .interior-services,
+  .interior-portfolio-item,
+  .interior-process-step {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .fade-in.visible .interior-feature-item:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+  }
+  
+  .fade-in.visible .interior-feature-item:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+  
+  .fade-in.visible .interior-feature-item:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+  }
+  
+  .fade-in.visible .interior-feature-item:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+  }
+  
+  .fade-in.visible .interior-showcase-item:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+  }
+  
+  .fade-in.visible .interior-showcase-item:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+  }
+  
+  .fade-in.visible .interior-showcase-item:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.7s;
+  }
+  
+  .fade-in.visible .interior-process-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.8s;
+  }
+  
+  .fade-in.visible .interior-process-step:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.9s;
+  }
+  
+  .fade-in.visible .interior-process-step:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1s;
+  }
+  
+  .fade-in.visible .interior-process-step:nth-child(5) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.1s;
+  }
+  
+  .fade-in.visible .interior-process-step:nth-child(7) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.2s;
+  }
+  
+  .fade-in.visible .interior-process-step:nth-child(9) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.3s;
+  }
+  
+  .fade-in.visible .interior-services {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.4s;
+  }
+  
+  .fade-in.visible .interior-portfolio-item:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.5s;
+  }
+  
+  .fade-in.visible .interior-portfolio-item:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.6s;
+  }
+  
+  .fade-in.visible .interior-portfolio-item:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.7s;
+  }
+  
+  .fade-in.visible .interior-portfolio-item:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.8s;
+  }
+  
+  /* Responsive design improvements */
+  @media (max-width: 1200px) {
+    .interior-section {
+      padding: 65px 0;
+    }
+    
+    .interior-section-title {
+      font-size: 2.2rem;
+    }
+    
+    .interior-features {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+    
+    .interior-showcase-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .interior-process-flow {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .interior-process-step {
+      width: 40%;
+      margin-bottom: 30px;
+    }
+    
+    .interior-process-arrow {
+      display: none;
+    }
+    
+    .interior-services-container {
+      flex-direction: column;
+    }
+    
+    .interior-service-column {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .interior-section {
+      padding: 60px 0;
+    }
+    
+    .interior-section-title {
+      font-size: 2rem;
+    }
+    
+    .interior-intro p {
+      font-size: 1.1rem;
+    }
+    
+    .interior-process,
+    .interior-services {
+      padding: 30px;
+    }
+    
+    .interior-process h3,
+    .interior-services h3,
+    .interior-showcase h3,
+    .interior-portfolio h3 {
+      font-size: 1.8rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .interior-section {
+      padding: 50px 0;
+    }
+    
+    .interior-section-title {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+    }
+    
+    .interior-intro {
+      margin-bottom: 35px;
+    }
+    
+    .interior-intro p {
+      font-size: 1.05rem;
+    }
+    
+    .interior-features {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .interior-showcase-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .interior-process-step {
+      width: 80%;
+    }
+    
+    .interior-portfolio-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .interior-cta-button {
+      padding: 12px 25px;
+      font-size: 0.9rem;
+    }
+    
+    .interior-cta-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .interior-cta-button {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .interior-section {
+      padding: 40px 0;
+    }
+    
+    .interior-section-title {
+      font-size: 1.7rem;
+    }
+    
+    .interior-intro p {
+      font-size: 1rem;
+    }
+    
+    .interior-feature-item {
+      padding: 25px 20px;
+    }
+    
+    .interior-feature-item h3 {
+      font-size: 1.3rem;
+    }
+    
+    .interior-feature-item p {
+      font-size: 0.95rem;
+    }
+    
+    .interior-icon-container {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .interior-svg-icon {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .interior-process {
+      padding: 25px 20px;
+    }
+    
+    .interior-process h3 {
+      font-size: 1.6rem;
+    }
+    
+    .interior-step-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+    }
+    
+    .interior-step-content {
+      padding: 12px;
+    }
+    
+    .interior-step-content h4 {
+      font-size: 1rem;
+    }
+    
+    .interior-step-content p {
+      font-size: 0.85rem;
+    }
+    
+    .interior-services {
+      padding: 25px 20px;
+    }
+    
+    .interior-services h3 {
+      font-size: 1.6rem;
+    }
+    
+    .interior-service-category h4 {
+      font-size: 1.2rem;
+    }
+    
+    .interior-service-list li {
+      font-size: 0.9rem;
+    }
+    
+    .interior-portfolio h3 {
+      font-size: 1.6rem;
+    }
+    
+    .interior-portfolio-overlay span {
+      font-size: 1.1rem;
+    }
+  }
