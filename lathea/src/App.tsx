@@ -11,6 +11,12 @@ import Values from './pages/Values/Values';
 import MarketStudy from './pages/Market Study/MarketStudy';
 import Development from './pages/Development/Development';
 import Contracting from './pages/Contracting/Contracting';
+import PropertyManagement from './pages/PM/PropertyManagement';
+import ProjectManagement from './pages/Project Management/ProjectManagement';
+import Consultancy from './pages/Consultancy/Consultancy';
+import InteriorDesign from './pages/InteriorDesign/InteriorDesign';
+import Partners from './pages/Partner/Partner';
+import TeamPage from './pages/Team Page/TeamPage';
 
 const App: React.FC = () => {
   return (
@@ -27,6 +33,12 @@ const App: React.FC = () => {
         <Route path="/market-studies" element={<MarketStudy />} />
         <Route path="/development" element={<Development />} />
         <Route path="/contracting" element={<Contracting />} />
+        <Route path="/property-management" element={<PropertyManagement />} />
+        <Route path="/project-management" element={<ProjectManagement />} />
+        <Route path="/consultancy" element={<Consultancy />} />
+        <Route path="/interior" element={<InteriorDesign />} />
+        <Route path="/partners" element={<Partners />} />
+        <Route path="/team" element={<TeamPage />} />
       </Routes>
     </Router>
   );
