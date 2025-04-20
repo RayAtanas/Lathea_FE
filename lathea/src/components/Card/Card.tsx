@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { getImageUrl, handleImageError } from '../../utils/ImageUtils';
 import './Card.css';
 
 // Icon component for projects
@@ -23,7 +24,6 @@ export interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ 
-  id, 
   name, 
   status, 
   image, 
@@ -33,18 +33,14 @@ const Card: React.FC<CardProps> = ({
   onClick,
   children
 }) => {
-  // Process image URL
-  const baseUrl = "http://localhost:8080"; // Adjust this as needed
-  
-  let imageUrl: string | undefined;
-  
-  if (typeof image === 'string') {
-    // Handle case where image is a direct string URL
-    imageUrl = image.startsWith('http') ? image : `${baseUrl}${encodeURI(image)}`;
-  } else if (Array.isArray(image) && image.length > 0) {
-    // Handle case where image is an array of strings
-    imageUrl = image[0].startsWith('http') ? image[0] : `${baseUrl}${encodeURI(image[0])}`;
-  }
+  const [imageUrl, setImageUrl] = useState<string | undefined>(() => {
+    if (typeof image === 'string') {
+      return getImageUrl(image);
+    } else if (Array.isArray(image) && image.length > 0) {
+      return getImageUrl(image[0]);
+    }
+    return undefined;
+  });
   
   // Get status class for styling
   const getStatusClass = () => {
@@ -73,6 +69,19 @@ const Card: React.FC<CardProps> = ({
     return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };
 
+  // Handle image loading errors
+  const handleImgError = () => {
+    const imagePath = typeof image === 'string' ? image : (Array.isArray(image) && image.length > 0 ? image[0] : undefined);
+    // Create a fake event object
+    const event = {
+      currentTarget: { src: imageUrl || '' } as HTMLImageElement
+    } as React.SyntheticEvent<HTMLImageElement, Event>;
+    
+    handleImageError(event, imagePath, (newUrl) => {
+      setImageUrl(newUrl || undefined);
+    });
+  };
+
   return (
     <div
       className="card"
@@ -80,6 +89,7 @@ const Card: React.FC<CardProps> = ({
         backgroundImage: imageUrl ? `url("${imageUrl}")` : undefined,
       }}
       onClick={onClick}
+      onError={handleImgError} // Add error handling for background image
     >
       {/* Dark overlay */}
       <div className="overlay"></div>
