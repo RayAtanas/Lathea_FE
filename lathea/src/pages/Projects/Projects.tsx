@@ -122,7 +122,6 @@ const Projects: React.FC = () => {
       <div className="projects-container" ref={projectsRef}>
         <div className="projects-filters">
           <div className="filters-section">
-            <h3>Filter by Status</h3>
             <div className="filter-buttons">
               {getUniqueStatuses().map(status => (
                 <button 

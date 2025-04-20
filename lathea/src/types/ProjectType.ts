@@ -20,3 +20,14 @@ export interface Project {
     flatPlan?:string[];
     projectId?:number;
   }
+
+  export interface Employee {
+    id: number;
+    name: string;
+    email:string;
+    phoneNumber?: string;
+    linkedIn?:string;
+    title?:string;
+    image?: string;
+
+  }
