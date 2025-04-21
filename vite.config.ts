@@ -4,7 +4,8 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
-  const base = command === 'serve' ? '/' : '/Lathea_FE/'
+  const isProduction = command === 'build'
+  const base = isProduction ? '/Lathea_FE/' : '/'
   
   return {
     plugins: [react()],
@@ -17,13 +18,8 @@ export default defineConfig(({ command }) => {
     build: {
       outDir: 'dist',
       assetsDir: 'assets',
-      sourcemap: true,
-      // Ensure public path is correctly set
-      rollupOptions: {
-        output: {
-          manualChunks: undefined,
-        },
-      },
+      sourcemap: false, // Set to true only for debugging
+      emptyOutDir: true,
     },
   }
 })

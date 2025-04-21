@@ -11,8 +11,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages --repo https://github.com/RayAtanas/Lathea_FE.git -d dist"
+    "predeploy": "npm run build && node deploy.js",
+    "deploy": "gh-pages -d dist",
+    "deploy:custom": "node deploy.js"
   },
   "dependencies": {
     "lucide-react": "^0.483.0",

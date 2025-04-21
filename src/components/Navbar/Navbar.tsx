@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
-import logo from '../../assets/LatheaGroup_Logo.png';
+import logo from '../../../public/LatheaGroup_Logo.png';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
