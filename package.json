@@ -1,5 +1,5 @@
 {
-  "homepage": "https://rayatanas.github.io/Lathea_FE",
+  "homepage": "https://rayatanas.github.io/Lathea_FE/",
   "repository": {
     "type": "git",
     "url": "https://github.com/RayAtanas/Lathea_FE.git"
@@ -11,9 +11,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "predeploy": "npm run build && node deploy.js",
-    "deploy": "gh-pages -d dist",
-    "deploy:custom": "node deploy.js"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "lucide-react": "^0.483.0",
