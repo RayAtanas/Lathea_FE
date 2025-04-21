@@ -2,15 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-// Import favicon properly
-import favicon from './assets/LatheaGroup_Logo.png'
 
-// Set favicon programmatically
-const link = document.createElement('link')
-link.rel = 'icon'
-link.type = 'image/png'
-link.href = favicon
-document.head.appendChild(link)
+// Import favicon using relative import (no need to set it programmatically)
+import './assets/LatheaGroup_Logo.png'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

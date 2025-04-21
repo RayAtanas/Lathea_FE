@@ -8,14 +8,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-
-"scripts": {
-  "dev": "vite",
-  "build": "tsc && vite build",
-  "predeploy": "npm run build",
-   "deploy": "gh-pages --repo https://github.com/RayAtanas/Lathea_FE.git -d dist"
-},
-
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages --repo https://github.com/RayAtanas/Lathea_FE.git -d dist"
+  },
   "dependencies": {
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",
