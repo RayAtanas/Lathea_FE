@@ -91,52 +91,52 @@ const Navbar: React.FC = () => {
   };
 
   const handleChairmanClick = () => {
-   navigate("/chairman");
+   navigate("#/chairman");
   };
 
   
   const handleLatheaClick = () => {
-    navigate("/choose-lathea");
+    navigate("#/choose-lathea");
    };
 
    const handleTeamClick = () => {
-    navigate("/team");
+    navigate("#/team");
    };
 
    const handleMissionClick = () => {
-    navigate("/mission");
+    navigate("#/mission");
    };
    const handleValuesClick = () => {
-    navigate("/values");
+    navigate("#/values");
    };
    const handleMarketClick = () => {
-    navigate("/market-studies");
+    navigate("#/market-studies");
    };
 
    const handleDevelopmentClick = () => {
-    navigate("/development");
+    navigate("#/development");
    };
 
    const handleContractingClick = () => {
-    navigate("/contracting");
+    navigate("#/contracting");
    };
    const handleProjectManagementClick = () => {
-    navigate("/project-management");
+    navigate("#/project-management");
    };
    const handlePMClick = () => {
-    navigate("/property-management");
+    navigate("#/property-management");
    };
 
    const handleConsultancyClick = () => {
-    navigate("/consultancy");
+    navigate("#/consultancy");
    };
 
    const handleInteriorClick = () => {
-    navigate("/interior");
+    navigate("#/interior");
    };
 
    const handlePartnerClick = () => {
-    navigate("/partners");
+    navigate("#/partners");
    };
 
   // Handle logo click to navigate to home page
