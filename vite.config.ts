@@ -6,7 +6,9 @@ import { resolve } from 'path'
 export default defineConfig(({ command }) => {
   const isProduction = command === 'build'
   // Ensure trailing slash for proper asset resolution
-  const base = isProduction ? '/Lathea_FE/' : '/'
+  const base = isProduction
+  ? './'
+  : '/'
   
   return {
     plugins: [react()],
